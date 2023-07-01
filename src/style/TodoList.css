@@ -1,0 +1,97 @@
+.todo-title {
+    background: linear-gradient(99.77deg, #018aee 0%, #00b886 100%);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: none;
+}
+
+.todo-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+  
+.input-container {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.todo-input{
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #007dfb;
+}
+.edited-input{
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #bababa;
+}
+
+.add-button {
+    margin-left: 8px;
+    padding: 4px 8px;
+    font-size: 14px;
+    background-color: #2d96ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+.add-button:hover {
+    background-color:#007dfb;
+}
+
+.todo-list {
+list-style: none;
+padding: 0;
+}
+
+.todo-item {
+display: flex;
+align-items: center;
+margin-top: 8px;
+}
+
+.todo-edit-input {
+flex: 1;
+padding: 4px;
+font-size: 16px;
+}
+
+.edit-button {
+    margin-left: 8px;
+    padding: 4px 8px;
+    font-size: 14px;
+    background-color: #ffef8a;
+    border: none;
+    border-radius: 4px;
+    }
+    
+.edit-button:hover {
+background-color: #ffe229;
+}
+.edited-button{
+    margin-left: 8px;
+    padding: 4px 8px;
+    font-size: 14px;
+    background-color: #ffef8a;
+    border: none;
+    border-radius: 4px;
+}
+.edited-button:hover {
+    background-color: #ffe229;
+}
+
+.delete-button {
+margin-left: 8px;
+padding: 4px 8px;
+font-size: 14px;
+background-color: #ff5858;
+color: #fff;
+border: none;
+border-radius: 4px;
+}
+
+.delete-button:hover {
+background-color: #ff3030;
+}
