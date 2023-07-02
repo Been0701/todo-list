@@ -1,4 +1,4 @@
-.todo-title {
+.todo-header {
     background: linear-gradient(99.77deg, #018aee 0%, #00b886 100%);
     color: transparent;
     -webkit-background-clip: text;
@@ -13,7 +13,8 @@
 .input-container {
     padding: 8px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
 }
 
@@ -29,7 +30,6 @@
 }
 
 .add-button {
-    margin-left: 8px;
     padding: 4px 8px;
     font-size: 14px;
     background-color: #2d96ff;
@@ -47,11 +47,15 @@ padding: 0;
 }
 
 .todo-item {
-display: flex;
-align-items: center;
+/* display: flex;
+align-items: center; */
 margin-top: 8px;
 }
 
+.todo-title {
+    border-bottom: 1px solid #bababa;
+    cursor: pointer;
+}
 .todo-edit-input {
 flex: 1;
 padding: 4px;

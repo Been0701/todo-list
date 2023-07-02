@@ -6,8 +6,10 @@ function TodoList(){
     const [todos, setTodos] = useState([]);
     const [titleInput, setTitleInput] = useState('');
     const [contentInput, setContentInput] = useState('');
+    const [expandedTodoId, setExpandedTodoId] = useState(null)
     const [editableTodoId, setEditableTodoId] = useState(null);
-    const [editableTodoText, setEditableTodoText] = useState('');
+    const [editableTodoTitle, setEditableTodoTitle] = useState('');
+    const [editableTodoContent, setEditableTodoContent] = useState('');
 
     const addTodo = () => {
        if(titleInput.trim() !== ''){
@@ -22,23 +24,34 @@ function TodoList(){
        }
     }
 
+    // 항목 내용 확장/축소
+    const toggleExpandTodo = (id) => {
+        if(expandedTodoId === id) {
+            setExpandedTodoId(null);
+        } else {
+            setExpandedTodoId(id);
+        }
+    }
+
     // 항묵 수정 가능한 상태로 만듦
-    const enableEditMode = (id, text) => {
+    const enableEditMode = (id, title, content) => {
         setEditableTodoId(id);
-        setEditableTodoText(text);
+        setEditableTodoTitle(title);
+        setEditableTodoContent(content);
     }
 
     // 항목 수정 완료
     const saveTodo = () => {
         const updatedTodos = todos.map(todo => {
             if(todo.id === editableTodoId){
-                return { ...todo, text: editableTodoText};
+                return { ...todo, title: editableTodoTitle, content: editableTodoContent};
             }
             return todo;
         })
         setTodos(updatedTodos);
         setEditableTodoId(null);
-        setEditableTodoText('');
+        setEditableTodoTitle('');
+        setEditableTodoContent('');
     }
     
     const deleteTodo = (id) => {
@@ -48,7 +61,7 @@ function TodoList(){
 
     return (
         <div className='todo-container'>
-            <h1 className='todo-title'>Todo List</h1>
+            <h1 className='todo-header'>Todo List</h1>
             <div className='input-container'>
                 <input type='text' className='todo-input' placeholder='제목을 입력하세요' value={titleInput} onChange={(e) => setTitleInput(e.target.value)}/>
                 <textarea
@@ -60,17 +73,15 @@ function TodoList(){
             <ul className='todo-list'>
                 {todos.map(todo => (
                     <li key={todo.id} className='todo-item'>
-                      {editableTodoId === todo.id ? (
-                        <>
-                            <input type='text' value={editableTodoText} onChange={(e) => setEditableTodoText(e.target.value)} className='edited-input'/>
-                            <button onClick={saveTodo} className='edited-button'>완료</button>
-                        </>
-                      ): 
-                      <>
-                        <span className='todo-text'>{todo.text}</span>
-                        <button onClick={() => enableEditMode(todo.id, todo.text)} className='edit-button'>수정</button>
-                        <button onClick={() => deleteTodo(todo.id)} className='delete-button'>삭제</button>
-                      </>}
+                     <div className='todo-title' onClick={() => toggleExpandTodo(todo.id)}>{todo.title}</div>
+                     {expandedTodoId === todo.id && (
+                        <div className='todo-content'>{todo.content}
+                            <div className='todo-actions'>
+                                <button onClick={() => enableEditMode(todo.id, todo.title, todo.content)} className='edit-button'>수정</button>
+                                <button onClick={() => deleteTodo(todo.id)} className='delete-button'>삭제</button>
+                            </div>
+                        </div>
+                     )}
                     </li>
                 ))}
             </ul>
