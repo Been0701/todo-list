@@ -73,14 +73,26 @@ function TodoList(){
             <ul className='todo-list'>
                 {todos.map(todo => (
                     <li key={todo.id} className='todo-item'>
-                     <div className='todo-title' onClick={() => toggleExpandTodo(todo.id)}>{todo.title}</div>
+                        {editableTodoId === todo.id ? 
+                        <input type='text' className='todo-input' value={editableTodoTitle} onChange={(e) => setEditableTodoTitle(e.target.value)}/>:
+                        <div className='todo-title' onClick={() => toggleExpandTodo(todo.id)}>{todo.title}</div>
+                        }
                      {expandedTodoId === todo.id && (
-                        <div className='todo-content'>{todo.content}
-                            <div className='todo-actions'>
-                                <button onClick={() => enableEditMode(todo.id, todo.title, todo.content)} className='edit-button'>수정</button>
-                                <button onClick={() => deleteTodo(todo.id)} className='delete-button'>삭제</button>
+                        editableTodoId === todo.id ? (
+                            <div>  
+                                <textarea className='todo-textarea' style={{marginLeft: '0'}} value={editableTodoContent} onChange={(e) => setEditableTodoContent(e.target.value)}/>
+                                <div className='todo-actions'>
+                                    <button onClick={() => saveTodo(todo.id)} className='edited-button'>완료</button>
+                                </div>
                             </div>
-                        </div>
+                        )  : (
+                            <div className='todo-content'>{todo.content}
+                                <div className='todo-actions'>
+                                    <button onClick={() => enableEditMode(todo.id, todo.title, todo.content)} className='edit-button'>수정</button>
+                                    <button onClick={() => deleteTodo(todo.id)} className='delete-button'>삭제</button>
+                                </div>
+                            </div>
+                        )
                      )}
                     </li>
                 ))}

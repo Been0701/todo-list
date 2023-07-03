@@ -56,11 +56,6 @@ margin-top: 8px;
     border-bottom: 1px solid #bababa;
     cursor: pointer;
 }
-.todo-edit-input {
-flex: 1;
-padding: 4px;
-font-size: 16px;
-}
 
 .edit-button {
     margin-left: 8px;
@@ -99,3 +94,14 @@ border-radius: 4px;
 .delete-button:hover {
 background-color: #ff3030;
 }
+.todo-textarea {
+    width: 400px;
+    height: 150px;
+    resize: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin:10px;
+    font-size: 14px;
+    color: #333;
+  }
+
